@@ -1,0 +1,40 @@
+ID: Usermanage
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: LoginScreen
+   type: html5
+   path: LoginScreen
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_Usermanage
+    - name: dest_Usermanage
+
+
+ - name: test
+   type: nodejs
+   path: test
+   provides:
+    - name: test_api
+      properties:
+         url: ${default-url}
+
+resources:
+ - name: uaa_Usermanage
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+ - name: dest_Usermanage
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service
+
