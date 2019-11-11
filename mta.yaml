@@ -16,13 +16,19 @@ modules:
     - name: dest_Usermanage
 
 
- - name: test
+ 
+
+
+ - name: Backend
    type: nodejs
-   path: test
+   path: Backend
    provides:
-    - name: test_api
+    - name: Backend_api
       properties:
          url: ${default-url}
+
+
+ 
 
 resources:
  - name: uaa_Usermanage
@@ -37,4 +43,10 @@ resources:
       service-plan: lite
       service: destination
    type: org.cloudfoundry.managed-service
+
+
+ - name: hdi_Userinfor
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
 

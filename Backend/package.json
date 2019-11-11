@@ -7,7 +7,7 @@
   },
   "files": [],
   "main": "server.js",
-  "name": "test",
+  "name": "Backend",
   "scripts": {
     "test": "node node_modules/jest/bin/jest --config jest.json",
     "test-coverage": "node node_modules/jest/bin/jest --coverage --config jest.json",
