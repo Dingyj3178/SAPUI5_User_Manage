@@ -6,8 +6,8 @@
 					<content>
 						<VBox alignItems="Center" height="50%">
 							<Input width="230px" id="userid" type="Text" submit="showdata" value="{inputModel>/userId}"></Input>
-							<Input width="230px" id="password" type="Password"></Input>
-							<Button text="login" press="showdata" class="srchBtn sapUiSmallMarginTop" width="120px"/>
+							<Input width="230px" id="password" type="Password" submit="showdata" value="{inputModel>/password}"></Input>
+							<Button text="login" press=".showdata" class="srchBtn sapUiSmallMarginTop" width="120px"/>
 						</VBox>
 					</content>
 				</Page>

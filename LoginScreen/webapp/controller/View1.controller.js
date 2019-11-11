@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox"
-], function ( Controller, JSONModel, MessageBox) {
+], function (Controller, JSONModel, MessageBox) {
 	"use strict";
 
 	return Controller.extend("LoginScreen.LoginScreen.controller.View1", {
@@ -13,14 +13,29 @@ sap.ui.define([
 			});
 			this.getView().setModel(oViewModel, "inputModel");
 		},
-
+		getApiUrl: function (path) {
+			var host = window.location.host;
+			var jsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+			//URLリンク
+			return jsHost + host + path;
+		},
 		showdata: function (oEvent) {
 			var inputModel = this.getView().getModel("inputModel");
-			var userId = inputModel.getProperty("/userId");
-			MessageBox.information(
-				userId
-			);
+			var postBody = {
+				"userId": inputModel.getProperty("/userId"),
+				"password": inputModel.getProperty("/password")
+			};
+			var url = this.getApiUrl("/login");
+			jQuery.ajax({
+				type: "POST",
+				contentType: "application/json",
+				async: false,
+				url: url,
+				data: JSON.stringify(postBody),
+				success: function (response, status, xhr) {
+					MessageBox.information('success');
+				}
+			});
 		}
 	});
-}
-);
+});
