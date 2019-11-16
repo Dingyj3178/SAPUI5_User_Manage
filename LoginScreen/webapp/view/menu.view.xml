@@ -1,0 +1,12 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="LoginScreen.LoginScreen.controller.menu">
+	<App>
+		<pages>
+			<Page title="Title">
+				<content><Button xmlns="sap.m" text="Button" id="button0" activeIcon="sap-icon://sys-back" press="action" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" action:wiring="\{'press':\{'navigation':\{'routeName':'View1'\}\}\}"/>
+				</content>
+			<headerContent>
+			</headerContent>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

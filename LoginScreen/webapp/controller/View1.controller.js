@@ -12,30 +12,37 @@ sap.ui.define([
 				password: ""
 			});
 			this.getView().setModel(oViewModel, "inputModel");
+			// this.oRouter = this.getOwnerComponent().getRouter();
 		},
 		getApiUrl: function (path) {
 			var host = window.location.host;
-			var jsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+			var jsHost = ((document.location.protocol === "https:") ? "https://" : "http://");
 			//URLリンク
 			return jsHost + host + path;
 		},
 		showdata: function (oEvent) {
-			var inputModel = this.getView().getModel("inputModel");
-			var postBody = {
-				"userId": inputModel.getProperty("/userId"),
-				"password": inputModel.getProperty("/password")
-			};
-			var url = this.getApiUrl("/login");
-			jQuery.ajax({
-				type: "POST",
-				contentType: "application/json",
-				async: false,
-				url: url,
-				data: JSON.stringify(postBody),
-				success: function (response, status, xhr) {
-					MessageBox.information('success');
-				}
-			});
-		}
+				var inputModel = this.getView().getModel("inputModel");
+				var postBody = {
+					"userId": inputModel.getProperty("/userId"),
+					"password": inputModel.getProperty("/password")
+				};
+				var url = this.getApiUrl("/login");
+				jQuery.ajax({
+					type: "POST",
+					contentType: "application/json",
+					async: false,
+					url: url,
+					data: JSON.stringify(postBody),
+					success: function (response, status, xhr) {
+						// MessageBox.information('success');
+						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+						oRouter.navTo("t_menu");
+					}
+				});
+			}
+			// showdata: function (oEvent) {
+			// 	var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// 	oRouter.navTo("t_menu");
+			// }
 	});
 });
