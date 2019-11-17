@@ -2,7 +2,9 @@
 	<App>
 		<pages>
 			<Page title="Title">
-				<content><Button xmlns="sap.m" text="Button" id="button0" activeIcon="sap-icon://sys-back" press="action" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" action:wiring="\{'press':\{'navigation':\{'routeName':'View1'\}\}\}"/>
+				<content>
+					<Button xmlns="sap.m" text="Button" id="button0" activeIcon="sap-icon://sys-back" press="action" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" action:wiring="\{'press':\{'navigation':\{'routeName':'View1'\}\}\}"/>
+					<Button xmlns="sap.m" text="Data" press=".reqdata"></Button>
 				</content>
 			<headerContent>
 			</headerContent>

@@ -1,4 +1,7 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
+sap.ui.define([
+		"sap/ui/core/mvc/Controller",
+		"sap/m/MessageBox"]
+		, function (Controller,MessageBox) {
 	"use strict";
 	return Controller.extend("LoginScreen.LoginScreen.controller.menu", {
 		/**
@@ -8,6 +11,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
 		 */
 		onInit: function () {
 			this.oRouter = this.getOwnerComponent().getRouter();
+		},
+		getApiUrl: function (path) {
+			var host = window.location.host;
+			var jsHost = ((document.location.protocol === "https:") ? "https://" : "http://");
+			//URLリンク
+			return jsHost + host + path;
 		},
 		/**
 		 *@memberOf LoginScreen.LoginScreen.controller.menu
@@ -42,6 +51,24 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
 					this.getOwnerComponent().getRouter().navTo(oNavigation.routeName);
 				}
 			}
+		},
+		reqdata: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var url = this.getApiUrl("/menudata");
+			jQuery.ajax({
+				type: "GET",
+				contentType: "application/json",
+				async: false,
+				url: url,
+				success: function (response, status, xhr) {
+					MessageBox.information('success');					
+				},
+				statusCode: {
+					401: function() {
+						oRouter.navTo("View1");
+					}
+				}
+			});
 		}
 	});
 });

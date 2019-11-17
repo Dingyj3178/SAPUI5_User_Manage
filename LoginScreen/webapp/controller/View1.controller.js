@@ -21,6 +21,7 @@ sap.ui.define([
 			return jsHost + host + path;
 		},
 		showdata: function (oEvent) {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				var inputModel = this.getView().getModel("inputModel");
 				var postBody = {
 					"userId": inputModel.getProperty("/userId"),
@@ -35,8 +36,8 @@ sap.ui.define([
 					data: JSON.stringify(postBody),
 					success: function (response, status, xhr) {
 						// MessageBox.information('success');
-						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-						oRouter.navTo("t_menu");
+						
+					oRouter.navTo("t_menu");
 					}
 				});
 			}
